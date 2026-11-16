@@ -373,10 +373,21 @@ function thermodynamic_message(parent,message)
     message_label.Layout.Column = 1;
 end
 
+function [J_RJ,J_MC] = equilibrium_occupations(U,P,epsilon)
+    [T,mu] = calculate_GC(U,P,epsilon);
+    J_RJ = rayleigh_jeans(T,mu,epsilon(:));
+    M = numel(epsilon);
+    J_MC = zeros(M,1);
+    for mm = 1:M
+        alpha = zeros(1,M);
+        alpha(mm) = 1;
+        J_MC(mm) = mixed_moments(U,P,epsilon,alpha);
+    end
+end
+
 function plot_mean_occupations(parent,statistics,U,P,epsilon)
     %% Thermodynamic predictions
-    [~,~,J_RJ] = calculate_RJ(U,P,epsilon);
-    [~,~,J_MC] = calculate_MC(U,P,epsilon);
+    [J_RJ,J_MC] = equilibrium_occupations(U,P,epsilon);
 
     M = statistics.N_modes;
     modes = (1:M).';
@@ -457,8 +468,7 @@ end
 
 function plot_reciprocal_occupations(parent,statistics,U,P,epsilon)
     %% Thermodynamic predictions
-    [~,~,J_RJ] = calculate_RJ(U,P,epsilon);
-    [~,~,J_MC] = calculate_MC(U,P,epsilon);
+    [J_RJ,J_MC] = equilibrium_occupations(U,P,epsilon);
 
     J_sim = statistics.first_moment(:);
     reciprocal_sim = reciprocal_occupation(J_sim/P);

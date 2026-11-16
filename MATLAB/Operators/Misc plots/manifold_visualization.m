@@ -27,8 +27,13 @@ J0(exc) = P/N;
 % Energy
 U = epsilon*J0;
 
-% Thermodynamic equilibrium
-[~,~,J_eq] = calculate_MC(U,P,epsilon);
+% Microcanonical equilibrium occupations
+J_eq = zeros(M,1);
+for mm = 1:M
+    alpha = zeros(1,M);
+    alpha(mm) = 1;
+    J_eq(mm) = mixed_moments(U,P,epsilon,alpha);
+end
 
 %% Plot the manifold!
 % J >= 0, sum(J) = P, and epsilon*J = U. Two occupations are

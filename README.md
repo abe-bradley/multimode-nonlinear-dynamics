@@ -117,9 +117,25 @@ which the code evaluates in closed form, including degenerate spectra. The expre
 These functions also work on their own:
 
 ```matlab
-[T, mu, J] = calculate_MC(U, P, epsilon);   % exact microcanonical
-[T, mu, J] = calculate_RJ(U, P, epsilon);   % Rayleigh–Jeans
+[T_MC, mu_MC] = calculate_MC(U, P, epsilon);   % exact microcanonical
+[T_GC, mu_GC] = calculate_GC(U, P, epsilon);   % grand canonical
+J_GC = rayleigh_jeans(T_GC, mu_GC, epsilon);
+
+alpha = zeros(size(epsilon));
+alpha(1) = 1;
+mean_J1_MC = mixed_moments(U, P, epsilon, alpha);
 ```
+
+The parameter solvers return only temperature and chemical potential. Modal
+occupations are evaluated separately by `rayleigh_jeans` or `mixed_moments`.
+
+`weighted_volume(U,P,epsilon,alpha,dO)` evaluates the monomial-weighted volume
+and its derivatives with respect to energy and power. `alpha` contains one
+nonnegative integer exponent per mode; omit it or pass `[]` for ordinary volume.
+The derivative orders `dO=[n_U,n_P]` default to `[0 0]`. Its three outputs are the
+value, its sign, and the logarithm of its absolute value. `mixed_moments` divides
+the weighted volume by the ordinary volume in the log domain and supplies the
+finite normalized limits at exact spectral edges.
 
 ## Seeing the constraints
 
@@ -154,7 +170,8 @@ Inside `MATLAB/Functions`:
 | `Mode solvers` | `eigk` (modes plus Kerr overlap coefficients), `laplacian_1d` |
 | `Conserved quantities` | `kerr_conservation` |
 | `Statistics` | `modal_statistics`: moments, correlations, histograms |
-| `Microcanonical gas` | `volume`, `mixed_moments`, `calculate_MC`, `calculate_RJ`, `marginals`, `pearson_correlations` |
+| `Thermodynamics/Grand canonical` | `calculate_GC` for temperature and chemical potential, `rayleigh_jeans` for modal means |
+| `Thermodynamics/Microcanonical/Nearly linear` | `calculate_MC`, `weighted_volume`, `mixed_moments`, `marginals`, `pearson_correlations`, and `compute_weights` |
 | `Plotting` | the viewers, a progress bar, and `ot_colormap` |
 | `Materials` | `sellmeier_silica` |
 | `Basics` | `codes_root` (repository location), `noiser`, `degeneracy`, and small helpers |

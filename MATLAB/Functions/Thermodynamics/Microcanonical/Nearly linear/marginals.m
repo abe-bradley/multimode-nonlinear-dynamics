@@ -14,8 +14,8 @@ function [x,rho] = marginals(k,x,U,P,epsilon)
         %% Physical slice support
         support = physical_support(U_s,P_s,epsilon);
         A = zeros(size(U_s));
-        A(support) = volume( ...
-            U_s(support),P_s(support),epsilon,[0 0]);
+        A(support) = weighted_volume( ...
+            U_s(support),P_s(support),epsilon,[],[0 0]);
 
         %% Normalize
         Z = trapz(x,A);
@@ -37,8 +37,8 @@ function [x,rho] = marginals(k,x,U,P,epsilon)
         %% Physical slice support
         support = physical_support(U_s,P_s,epsilon);
         A = zeros(size(U_s));
-        A(support) = volume( ...
-            U_s(support),P_s(support),epsilon,[0 0]);
+        A(support) = weighted_volume( ...
+            U_s(support),P_s(support),epsilon,[],[0 0]);
 
         %% Normalize each energy independently
         rho = A;

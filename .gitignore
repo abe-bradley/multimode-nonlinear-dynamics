@@ -13,7 +13,7 @@
 !/MATLAB/Functions/Basics/
 !/MATLAB/Functions/Conserved quantities/
 !/MATLAB/Functions/Materials/
-!/MATLAB/Functions/Microcanonical gas/
+!/MATLAB/Functions/Thermodynamics/
 !/MATLAB/Functions/Mode solvers/
 !/MATLAB/Functions/Plotting/
 !/MATLAB/Functions/Propagators/
@@ -25,7 +25,7 @@
 /MATLAB/Functions/Basics/*
 /MATLAB/Functions/Conserved quantities/*
 /MATLAB/Functions/Materials/*
-/MATLAB/Functions/Microcanonical gas/*
+/MATLAB/Functions/Thermodynamics/*
 /MATLAB/Functions/Mode solvers/*
 /MATLAB/Functions/Plotting/*
 /MATLAB/Functions/Propagators/*
@@ -33,6 +33,12 @@
 /MATLAB/Functions/System configuration/*
 /MATLAB/Operators/Misc plots/*
 /MATLAB/Operators/Propagation/*
+!/MATLAB/Functions/Thermodynamics/Grand canonical/
+!/MATLAB/Functions/Thermodynamics/Microcanonical/
+/MATLAB/Functions/Thermodynamics/Grand canonical/*
+/MATLAB/Functions/Thermodynamics/Microcanonical/*
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/
+/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/*
 !/MATLAB/Data/System configurations/Lattice configurations/
 !/MATLAB/Functions/Plotting/Colormaps/
 !/MATLAB/Functions/Propagators/DNLSE/
@@ -69,13 +75,14 @@
 !/MATLAB/Functions/Basics/system_hierarchy.m
 !/MATLAB/Functions/Conserved quantities/kerr_conservation.m
 !/MATLAB/Functions/Materials/sellmeier_silica.m
-!/MATLAB/Functions/Microcanonical gas/calculate_MC.m
-!/MATLAB/Functions/Microcanonical gas/calculate_RJ.m
-!/MATLAB/Functions/Microcanonical gas/compute_weights.m
-!/MATLAB/Functions/Microcanonical gas/marginals.m
-!/MATLAB/Functions/Microcanonical gas/mixed_moments.m
-!/MATLAB/Functions/Microcanonical gas/pearson_correlations.m
-!/MATLAB/Functions/Microcanonical gas/volume.m
+!/MATLAB/Functions/Thermodynamics/Grand canonical/calculate_GC.m
+!/MATLAB/Functions/Thermodynamics/Grand canonical/rayleigh_jeans.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/calculate_MC.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/compute_weights.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/marginals.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/mixed_moments.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/pearson_correlations.m
+!/MATLAB/Functions/Thermodynamics/Microcanonical/Nearly linear/weighted_volume.m
 !/MATLAB/Functions/Mode solvers/eigk.m
 !/MATLAB/Functions/Mode solvers/laplacian_1d.m
 !/MATLAB/Functions/Plotting/Colormaps/COLORMAPS.txt
